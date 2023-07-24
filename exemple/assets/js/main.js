@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+  
     new ImagesScroll( {
         images: {
           imagesContainerSelector: "#imageScrollContainer",

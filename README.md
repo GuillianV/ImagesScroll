@@ -7,106 +7,63 @@
 
 ```javascript
 
-let parentContainer = document.querySelector(".approche-anim")
-
-
-new PinStepAnim({
-    trigger: parentContainer,
-    start: "center center",
-    end: "+=1300 center",
-    pin: true,
-    markers: true,
-    scrub: 1,
-    toggleActions: "Play Reverse none none"
-}, {
-
-       mainElem: {
-
-            selector: document.querySelectorAll(".block-etape"), // Peut etre une variable avec une NodeList , un selecteur css
-            createClass: "b", // Génere une classe custom aux blocks principaux
-            gsapFrom: {
-                properties: {
-                    yPercent: 200, //Tous les propriétés gsap nécessaires
-                    opacity: 0,
-                },
-                endDelay: "-=0.5"
+    new ImagesScroll( {
+        images: {
+          imagesContainerSelector: "#imageScrollContainer",
+          nbImagesMax: 380, //Le nombre d'images totales. elle doivent contenir dans leurs noms (à la fin) le numéro de leur position dans l'animation. exemple img-0.png premiere et img-360.png pour la derniere
+          pathToLoad: "./assets/images/klokers/", //Chemin du folder contenant les images
+          baseName: "", // Nom de base des images ex : si les images se nomment img-0.png, img-1.png etc.. la propriété baseName sera 'img-'. Vide de base (0.png,1.png,2.png ..),
+          extension: ".png", //Extension des images frame by frame
+          customAttributes: [ //Attributes custom a rajouter sur les images
+            { 
+              key: "class",
+              value: "imagesScroll",
             },
-
-            gsapTo: {
-                properties: {
-
-                    yPercent: -200,
-                    opacity: 0,
-                },
-            },
-
-        },
-        innerElems: [
-            
-            //Tableau contenant une liste d'objet à animer en parallele de l'élement principal
             {
-            selector: ".etapeTitle", 
-            gsapFrom: {
-                properties: {
-
-                    yPercent: 40,
-
-                },
-                endDelay: "<0"
+              key: "loading",
+              value: "lazy",
             },
-
-            gsapTo: {
-                properties: {
-                    yPercent: -40,
-                },
-                endDelay: "<0"
-
+            {
+              key: "alt",
+              value: "une imagesss video",
             },
-
-
-        },{
-            selector: ".images-anim-img",
-            gsapFrom: {
-                properties: {
-
-                    xPercent: 100,
-
-                },
-                endDelay: "<0"
+            {
+              key: "title",
+              value: "une image video",
             },
-
-            gsapTo: {
-                properties: {
-                    yPercent: -100,
-                },
-                endDelay: "<0"
-
+          ],
+        },
+        sections: [ // Listing des sections prenant en compte les propriétés du scrollTrigger de gsap
+          {
+            trigger: ".scene-1", 
+            startingFrame: 0, // La frame de début de la section (si aucune valeur : 0 )
+            endingFrame: 149, // Frame de fin (si aucune valeur n'est inscrite, on calcule avec la taille de l'array d'images)
+            onEnter: (event) => { //Propriétés suppléméntaires
+              console.log("start 1");
             },
+          },
+          {
+            trigger: ".scene-2",
+            startingFrame: 150,
+            endingFrame: 210,
+          },
+          {
+            trigger: ".scene-3",
+            startingFrame: 210,
+            endingFrame: 277,
+          },
+          {
+            trigger: ".scene-4",
+            startingFrame: 278,
+            endingFrame: 341,
+          },
+          {
+            trigger: ".scene-5",
+            startingFrame: 342,
+            endingFrame: 380,
+          },
+        ],
+      },)
 
-
-        }, {
-            selector: ".number",
-            gsapFrom: {
-                properties: {
-
-                    yPercent: 20,
-                },
-                endDelay: "<0"
-            },
-
-            gsapTo: {
-                properties: {
-                    yPercent: -20,
-                    
-                }, 
-                endDelay: "<0"
-
-            },
-        }],
-      
-
-    
-
-})
 
 ```
